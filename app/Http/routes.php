@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'EventsController@index');
+Route::get('event/{event}', 'EventsController@view');
+
 
 Route::auth();
 

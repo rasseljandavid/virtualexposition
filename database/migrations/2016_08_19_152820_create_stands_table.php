@@ -17,6 +17,8 @@ class CreateStandsTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->double('price', 15, 4);
+            $table->integer('event_id')->unsigned();
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
             $table->timestamps();
         });
     }
