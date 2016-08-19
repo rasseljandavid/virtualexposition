@@ -9,7 +9,12 @@
                 <a href="/event/{{ $event->id }}">{{ $event->name }}</a>
             </div>
             @endforeach
+            <div style="height: 500px; width: 100%;">
+            {!! Mapper::render() !!}
+            </div>
         </div>
+
+
     </div>
 </div>
 @endsection
