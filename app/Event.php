@@ -9,7 +9,9 @@ class Event extends Model
 	protected $fillable = [
 		'name',
 		'location',
-		'eventdate'
+		'eventdate',
+		'latitude',
+		'longtitude'
 	];
 
     public function stands()
