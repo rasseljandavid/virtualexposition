@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Event;
+use App\Stand;
+
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -69,5 +72,10 @@ class AuthController extends Controller
             'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function reserve(Event $event, Stand $stand)
+    {
+        return view('auth.reserve', compact(['event','stand']));
     }
 }

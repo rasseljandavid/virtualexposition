@@ -13,6 +13,9 @@
 
 Route::get('/', 'EventsController@index');
 Route::get('event/{event}', 'EventsController@view');
+Route::post('event/sendreport', 'EventsController@sendreport');
+Route::post('stand/addStandVisit', 'StandsController@addStandVisit');
+Route::post('stand/addDocumentDownload', 'StandsController@addDocumentDownload');
 
 
 Route::auth();

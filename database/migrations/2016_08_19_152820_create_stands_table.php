@@ -19,6 +19,8 @@ class CreateStandsTable extends Migration
             $table->double('price', 15, 4);
             $table->integer('event_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('totalVisit')->unsigned();
+            $table->integer('totalDownload')->unsigned();
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
             $table->timestamps();
         });

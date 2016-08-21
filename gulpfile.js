@@ -17,6 +17,9 @@ elixir(function(mix) {
        		'lib/jquery.js',
        		'lib/bootstrap.js',
        		'lib/angular.js',
+       		'lib/moment.js',
+       		'lib/humanize-duration.js',
+       		'lib/angular-timer.js',
        		'app.js'
        	], './public/js/app.min.js')
        .version([

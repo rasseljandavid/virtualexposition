@@ -1,35 +1,43 @@
 (function() {
-/*
-    angular.module("appName", [], function($interpolateProvider) {
-			$interpolateProvider.startSymbol('<%');
-			$interpolateProvider.endSymbol('%>');
-		 }).controller("MainController", MainController);
 
-    MainController.$inject = ["$scope"];
+    var app = angular.module('appName', ['timer']);
 
-    function MainController($scope) {
-        $scope.val = "You are the man!";
-        $scope.eventid = {val: 'testing'};
-     //   $scope.$watch('event', function (id) {
-        	//alert(id);
-    //    });
-    	
-
-    	$scope.checkEvents = function (id) {
-    		console.log($scope.eventid);
-    		return true;
-    	};
-    };  
-    */
-    var app = angular.module('appName', []);
     app.config(function($interpolateProvider) {
     	$interpolateProvider.startSymbol('<%');
     	$interpolateProvider.endSymbol('%>');
   	});
 
-    app.controller('MainController', function($scope) {
- 		
+    app.controller('MainController', function($scope, $window, $http) {
+
+    	$scope.eventfinished = function (id) {
+
+    		var event =  {
+    			id: id
+    		};
+    	
+    		$http.post('/event/sendreport', event);
+    		alert("hello" + id);
+    		//$window.location.href = '/';
+
+    	}
+
+    	$scope.addStandVisit = function (id) {
+    		var stand =  {
+    			id: id
+    		};
+    		$http.post('/stand/addStandVisit', stand);
+    	}
+
+    	$scope.addDocumentDownload = function (id) {
+    		var stand =  {
+    			id: id
+    		};
+    		$http.post('/stand/addDocumentDownload', stand);
+    	}
+		
 	});
+
+
 
 })();
 
