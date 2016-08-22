@@ -2,7 +2,7 @@
     <label class="col-md-2 control-label">Title</label>
 
     <div class="col-md-6">
-        <input type="text" class="form-control" name="stands[medium][{{$i}}][title]" value="{{ env('STAND_MEDIUM_DEFAULT_TITLE') }}">
+        <input type="text" class="form-control" name="stands[medium][{{$i}}][title]" value="{{ config('stand.stand_medium_default_title') }}">
     </div>
 </div>
 
@@ -10,6 +10,6 @@
     <label class="col-md-2 control-label">Price</label>
 
     <div class="col-md-6">
-        <input type="text" class="form-control" name="stands[medium][{{$i}}][price]" value="{{ env('STAND_MEDIUM_DEFAULT_PRICE') }}">
+        <input type="text" class="form-control" name="stands[medium][{{$i}}][price]" value="{{ config('stand.stand_medium_default_price') }}">
     </div>
 </div>
