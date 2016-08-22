@@ -28,4 +28,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(CompanyDocument::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
 }

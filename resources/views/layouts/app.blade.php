@@ -47,6 +47,11 @@
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
+                @unless(empty(Auth::user()->admin)) 
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/admin/event/create') }}">Create Event</a></li>
+                </ul>
+                @endif
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -72,9 +77,10 @@
 
     @yield('content')
 
+
     <!-- JavaScripts -->
     <script src="{{ elixir('js/app.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
-    
+
 </body>
 </html>

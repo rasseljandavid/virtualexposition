@@ -16,12 +16,24 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('phone');
+            $table->boolean('admin');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('logo');
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert(
+            array(
+                'name' => 'Admin',
+                'admin' => 1,
+                'email' => 'admin@virtualexposition.com',
+                'password' => bcrypt("abc123")
+            )
+        );
+
+
     }
 
     /**

@@ -13,8 +13,8 @@
 
 Route::get('/', 'EventsController@index');
 Route::get('event/{event}', 'EventsController@view');
-Route::post('event', 'EventsController@save');
-Route::get('admin/event/create', 'EventsController@create');
+Route::post('event', 'EventsController@save')->middleware('auth');
+Route::get('admin/event/create', 'EventsController@create')->middleware('auth');
 Route::post('event/sendreport', 'EventsController@sendreport');
 Route::post('stand/addStandVisit', 'StandsController@addStandVisit');
 Route::post('stand/addDocumentDownload', 'StandsController@addDocumentDownload');

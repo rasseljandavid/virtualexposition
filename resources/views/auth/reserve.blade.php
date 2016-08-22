@@ -2,14 +2,15 @@
 
 @section('content')
 <div class="container">
-    <h1>Register or login to Reserver the {{ $stand->title }} of {{ $event->name }}</h1>
+    <h1 class="shade-blue">Register or login to Reserver the {{ $stand->title }} of {{ $event->name }}</h1>
     <hr />
-    <div class="row">
+    <div class="row reserve">
          <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                
+                    <form class="form-horizontal login-form" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
                           <input ng-init="stand_id={{$stand->id}}"  ng-model="stand_id" type="hidden" name="stand_id" value="{{$stand->id}}" />
                         <input ng-init="event_id={{$stand->event_id}}"  ng-model="event_id" type="hidden" name="event_id" value="{{$stand->event_id}}" />
@@ -57,7 +58,7 @@
                                     <i class="fa fa-btn fa-sign-in"></i> Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Password?</a>
                             </div>
                         </div>
                     </form>

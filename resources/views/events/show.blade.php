@@ -17,7 +17,7 @@
 	        		</timer>
 	        	</div>
         	</div>
-
+        	<p>{{$event->body}}</p>
         	<hr />
 
         	<div class="exposition-hall">
@@ -27,7 +27,7 @@
         				@unless ($stand->user_id)
         					<h2 class="price shade-blue">
 			        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-			        				{{$stand->price}}
+			        				{{number_format($stand->price, 2)}}
 			        			</a>
 		        			</h2>
 		        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
@@ -35,7 +35,7 @@
 		        			</a>
 		        			@include('modal/stand-free')
 			        	@else 
-			        		<h2 class="company-name">
+			        		<h2 class="company-name no-top-margin">
 			        			<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
 			        				<img class="logo" src="/images/logo/{{$stand->user->logo ?: "default.png"}}">
 			        			</a>
@@ -55,7 +55,7 @@
 	        			@unless ($stand->user_id)
 		        			<h2 class="price shade-blue">
 		        				<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-			        				{{$stand->price}}
+			        				{{number_format($stand->price,2)}}
 			        			</a>
 			        		</h2>
 		        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
@@ -63,7 +63,7 @@
 		        			</a>
 		        			@include('modal/stand-free')
 			        	@else 
-			        		<h2 class="company-name">
+			        		<h2 class="company-name no-top-margin">
 			        			<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
 			        				<img class="logo" src="/images/logo/{{$stand->user->logo ?: "default.png"}}">
 			        			</a>
@@ -83,7 +83,7 @@
 	        			@unless ($stand->user_id)
 		        			<h2 class="price shade-blue">
 		        				<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-		        					{{$stand->price}}
+		        					{{number_format($stand->price,2)}}
 		        				</a>
 		        			</h2>
 
@@ -93,7 +93,7 @@
 
 		        			@include('modal/stand-free')
 			        	@else 
-			        		<h2 class="company-name">
+			        		<h2 class="company-name no-top-margin">
 			        			<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
 			        				<img class="logo" src="/images/logo/{{$stand->user->logo ?: "default.png"}}">
 			        			</a>

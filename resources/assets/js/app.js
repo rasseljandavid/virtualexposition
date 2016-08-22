@@ -15,9 +15,9 @@
     			id: id
     		};
     	
-    		$http.post('/event/sendreport', event);
-    		//$window.location.href = '/';
-
+    		$http.post('/event/sendreport', event).success(function() {
+			    $window.location.href = '/';
+			});
     	}
 
     	$scope.addStandVisit = function (id) {
