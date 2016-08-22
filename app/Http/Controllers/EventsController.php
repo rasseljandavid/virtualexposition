@@ -48,7 +48,6 @@ class EventsController extends Controller
     	//Group the stands
     	$stands = array();
     	foreach($event->stands()->with('user.documents')->get() as $stand) {
-    		
     		$stands[$stand['type']][] = $stand;
     	}
     

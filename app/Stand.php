@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Facades\Auth;
+
 class Stand extends Model
 {
 	protected $fillable = [
@@ -34,5 +36,11 @@ class Stand extends Model
     		}
     	}
     	return;
+    }
+
+    public function reserve()
+    {
+    	$this->user_id = Auth::user()->id;
+    	return $this->save();
     }
 }

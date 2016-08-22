@@ -27,4 +27,10 @@ class StandsController extends Controller
     	$stand->totalDownload = $stand->totalDownload + 1;
     	$stand->save();
     }
+
+    public function reserve(Stand $stand)
+    {
+    	$stand->reserve();
+    	return redirect('/event/' . $stand->event_id);
+    }
 }

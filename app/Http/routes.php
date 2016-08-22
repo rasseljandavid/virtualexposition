@@ -18,7 +18,7 @@ Route::get('admin/event/create', 'EventsController@create');
 Route::post('event/sendreport', 'EventsController@sendreport');
 Route::post('stand/addStandVisit', 'StandsController@addStandVisit');
 Route::post('stand/addDocumentDownload', 'StandsController@addDocumentDownload');
-
+Route::get('stand/reserve/{stand}', 'StandsController@reserve');
 Route::post('files', 'CompanyDocumentController@addDocument');
 
 
