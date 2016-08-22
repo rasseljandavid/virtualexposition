@@ -4,6 +4,6 @@
 Homestead.yaml
 Homestead.json
 .env
-/public/build*
-/public/images*
-/public/documents*
+/public/build
+/public/images
+/public/documents
