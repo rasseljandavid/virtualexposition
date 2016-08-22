@@ -15,7 +15,7 @@ class CreateStandsTable extends Migration
         Schema::create('stands', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('body');
+            $table->string('type');
             $table->double('price', 15, 4);
             $table->integer('event_id')->unsigned();
             $table->integer('user_id')->unsigned();

@@ -1,6 +1,72 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+ @import "resources/assets/css/lib/datetimepicker";
+
+a {
+	color: #c7254e;
+}
+.no-top-margin {
+	margin-top: 0;
+}
+.half-bottom-margin {
+	margin-bottom: 5px;
+}
+
+.shade-blue {
+	color: #3e9bd5;
+}
 
 .event-listing .event {
 	display: none;
 }
 
+.event-listing .event h2.eventname {
+	color: #666;
+	margin-top: 0;
+}
+
+table.timer-table {
+	width: 165px;
+    text-align: center;
+}
+
+table.timer-table span {
+	color: #999;
+}
+
+label.timer-table-caption {
+	margin-bottom: 0;
+    margin-right: 34px;
+    display: block;
+}
+
+h1.event-title {
+	font-weight: bold;
+    font-size: 26px;
+}
+
+.exposition-hall {
+	text-align: center;
+}
+.exposition-hall img.logo {
+	width: 100%;
+}
+
+.exposition-hall h2 {
+	margin-bottom: 5px;
+}
+
+.exposition-hall .large, .exposition-hall .medium {
+	margin-bottom: 50px;
+}
+
+.exposition-hall .large h2 {
+	font-size: 25px
+}
+
+.exposition-hall .medium h2 {
+	font-size: 18px
+}
+
+.exposition-hall .small h2 {
+	font-size: 12px
+}

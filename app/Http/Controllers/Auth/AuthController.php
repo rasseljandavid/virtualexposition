@@ -64,11 +64,13 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data,  $filename = '')
+    {   
+      
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'logo'  => $filename,
             'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);

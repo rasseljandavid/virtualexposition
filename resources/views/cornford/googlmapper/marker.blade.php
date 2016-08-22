@@ -61,12 +61,17 @@ markers.push(marker_{!! $id !!});
 
 	@if (!empty($options['content']))
 
+		var prev_infowindow =false; 
+
 		var infowindow_{!! $id !!} = new google.maps.InfoWindow({
 			content: {!! json_encode($options['content']) !!}
 		});
 
 		google.maps.event.addListener(marker_{!! $id !!}, 'click', function() {
-			
+			if( prev_infowindow ) {
+           		prev_infowindow.close();
+       		}
+			prev_infowindow = infowindow_{!! $id !!};
 			infowindow_{!! $id !!}.open({!! $options['map'] !!}, marker_{!! $id !!});
 		});
 

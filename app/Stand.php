@@ -8,8 +8,8 @@ class Stand extends Model
 {
 	protected $fillable = [
 		'title',
-		'body',
-		'price'
+		'price',
+		'type'
 	];
 
     public function event()
@@ -20,5 +20,19 @@ class Stand extends Model
 	public function user()
     {
     	return $this->belongsTo(User::class);
+    }
+
+    public function addStand($request, $event)
+    {
+    	foreach($request as $size => $stand) {
+    		foreach($stand as  $item) {
+	    		$event->stands()->create([
+	    			'title'=>$item['title'], 
+	    			'price'=>$item['price'], 
+	    			'type'=>$size
+	    		]);
+    		}
+    	}
+    	return;
     }
 }

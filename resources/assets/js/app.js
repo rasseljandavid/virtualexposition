@@ -1,6 +1,6 @@
 (function() {
 
-    var app = angular.module('appName', ['timer']);
+    var app = angular.module('appName', ['timer', 'ui.bootstrap.datetimepicker']);
 
     app.config(function($interpolateProvider) {
     	$interpolateProvider.startSymbol('<%');
@@ -16,7 +16,6 @@
     		};
     	
     		$http.post('/event/sendreport', event);
-    		alert("hello" + id);
     		//$window.location.href = '/';
 
     	}

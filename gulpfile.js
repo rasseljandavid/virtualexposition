@@ -20,6 +20,8 @@ elixir(function(mix) {
        		'lib/moment.js',
        		'lib/humanize-duration.js',
        		'lib/angular-timer.js',
+       		'lib/datetimepicker.js',
+       		'lib/datetimepicker.templates.js',
        		'app.js'
        	], './public/js/app.min.js')
        .version([

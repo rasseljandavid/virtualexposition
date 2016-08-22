@@ -23,7 +23,8 @@ class EventsController extends Controller
 			[
 				'center'=> true, 
 				'marker'=>false,
-				'zoom'=> 2
+				'zoom'=> 2,
+				'fullscreenControl' => true
 
 			]);
 
@@ -32,7 +33,8 @@ class EventsController extends Controller
     		[
     			'eventClick' => '$(".event-listing .event").hide().parent().find(".event-listing-' . $event->id . '").slideDown()',
     			'title' => $event->name, 
-    			'content' => $event->name
+    			'content' => $event->name,
+				'animation' => 'DROP'
     		]); 
     	}
 
@@ -41,12 +43,15 @@ class EventsController extends Controller
 
     public function view(Event $event)
     {
-    	$event->load('stands.user');
+    	$event->load('stands');
     	$event->countdown = $event->eventend - time();
-
-    	//Add a finish date here
-
-    	return view('events.show', compact('event'));
+    	//Group the stands
+    	$stands = array();
+    	foreach($event->stands()->with('user')->get() as $stand) {
+    		$stands[$stand['type']][] = $stand;
+    	}
+    
+    	return view('events.show', compact('event', 'stands'));
     }
 
     public function sendreport(Request $request)
@@ -77,5 +82,19 @@ class EventsController extends Controller
 		}
     	
     	return $event;
+    }
+
+    public function create()
+    {
+    	return view('events.create');
+    }
+
+    public function save(Request $request)
+    {
+    	$event = new Event;
+    	
+    	$event->saveEvent($request->all());
+
+    	return redirect('/');
     }
 }

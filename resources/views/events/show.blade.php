@@ -4,74 +4,111 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-        	<h1>{{ $event->name }} Exposition Hall </h1>
-        	<timer finish-callback="eventfinished({{ $event->id }})" countdown="{{ $event->countdown }}" max-time-unit="'day'" interval="1000">
-        		<%days%> day<%dayS%>,
-	        	<%hours%> hour<%hourS%>,
-	        	<%mminutes%> minute<%minutesS%>,
-	        	<%sseconds%> second<%secondsS%>
-        	</timer>
+        	<div class="row">
+        		<div class="col-md-6">
+	        		<h1 class="no-top-margin event-title">{{ $event->name }} Exposition Hall</h1>
+	        		<p class="half-bottom-margin">Address: {{ $event->location }}</p>
+	        		<p class="half-bottom-margin">Date Start: <em>{{ date('F d, Y g:iA',$event->eventstart) }}</em></p>
+        		</div>
 
-            @foreach ($event->stands as $stand)
-            <div style="margin: 20px;">
-            	@if ($stand->user)
-            		<h2>
-            			{{$stand->user->name}}
-            		</h2>
+	        	<div class="col-md-6 text-right">
+	        		<timer finish-callback="eventfinished({{ $event->id }})" countdown="{{ $event->countdown }}" max-time-unit="'day'" interval="1000">
+		        		@include('layouts/timer')
+	        		</timer>
+	        	</div>
+        	</div>
 
-            		
+        	<hr />
 
-            		<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">{{ $stand->title }}
-            		</a>
+        	<div class="exposition-hall">
+        		<div class="row large">
+        			@foreach ($stands['large'] as $stand)
+        				<div class="col-md-4">
+        				@unless ($stand->user_id)
+        					<h2 class="price shade-blue">
+			        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+			        				{{$stand->price}}
+			        			</a>
+		        			</h2>
+		        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+		        				<img src="/images/large_stand_empty.png" / >
+		        			</a>
+		        			@include('modal/stand-free')
+			        	@else 
+			        		<h2 class="company-name">
+			        			<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+			        				<img class="logo" src="/images/logo/{{$stand->user->logo ?: "default.png"}}">
+			        			</a>
+			        		</h2>
+			        		<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+		        				<img src="/images/large_stand.png" / >
+		        			</a>
+		        			@include('modal/stand-company')
+			        	@endif
+			        	</div>
+	        		@endforeach
+        		</div>
 
-            		<!-- Modal -->
-					<div class="modal fade" id="modal-{{ $stand->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h4 class="modal-title" id="myModalLabel">{{ $stand->user->name }}</h4>
-					      </div>
-					      <div class="modal-body">
-					       		<p>{{ $stand->user->phone }}</p>
-					       		<p>{{ $stand->user->email }}</p>
-					       		<p>
-					       			Interested? Learn more <a ng-click="addDocumentDownload({{ $stand->id }})" href="">about us!</a>
-					       		</p>
-					      </div>
-					    </div>
-					  </div>
-					</div>
-            	@else
-            		<h2>
-            			{{$stand->price}}
-            		</h2>
-            		<p>
-            			Free
-            		</p>
-            		<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">{{ $stand->title }}</a>
+        		<div class="row medium">
+        			@foreach ($stands['medium'] as $stand)
+	        		<div class="col-md-3">
+	        			@unless ($stand->user_id)
+		        			<h2 class="price shade-blue">
+		        				<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+			        				{{$stand->price}}
+			        			</a>
+			        		</h2>
+		        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+		        				<img src="/images/medium_stand_empty.png" / >
+		        			</a>
+		        			@include('modal/stand-free')
+			        	@else 
+			        		<h2 class="company-name">
+			        			<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+			        				<img class="logo" src="/images/logo/{{$stand->user->logo ?: "default.png"}}">
+			        			</a>
+			        		</h2>
+			        		<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+		        				<img src="/images/medium_stand.png" / >
+		        			</a>
+		        			@include('modal/stand-company')
+			        	@endif
+	        		</div>
+	        		@endforeach
+        		</div>
 
-					<!-- Modal -->
-					<div class="modal fade" id="modal-{{ $stand->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h4 class="modal-title" id="myModalLabel">{{ $stand->title }}</h4>
-					      </div>
-					      <div class="modal-body">
-					       		<p>{{ $stand->body }}</p>
-					       		<p>{{ $stand->price }}</p>
-					      </div>
-					      <div class="modal-footer">
-					        <a href="/reserve/{{ $event->id }}/{{$stand->id }}" class="btn btn-primary">Reserve</a>
-					      </div>
-					    </div>
-					  </div>
-					</div>
-            	@endif
-            </div>
-            @endforeach
+        		<div class="row small">
+        			@foreach ($stands['small'] as $stand)
+	        		<div class="col-md-2">
+	        			@unless ($stand->user_id)
+		        			<h2 class="price shade-blue">
+		        				<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+		        					{{$stand->price}}
+		        				</a>
+		        			</h2>
+
+		        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+		        				<img src="/images/small_stand_empty.png" / >
+		        			</a>
+
+		        			@include('modal/stand-free')
+			        	@else 
+			        		<h2 class="company-name">
+			        			<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+			        				<img class="logo" src="/images/logo/{{$stand->user->logo ?: "default.png"}}">
+			        			</a>
+			        		</h2>
+			        		<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
+		        				<img src="/images/small_stand.png" / >
+		        			</a>
+
+		        			@include('modal/stand-company')
+			        	@endif
+	        		</div>
+	        		@endforeach
+        		</div>
+        	</div>
+        	<hr />
         </div>
     </div>
 </div>
