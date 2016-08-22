@@ -110,4 +110,22 @@ class AuthController extends Controller
         }
         return Auth::user()->id;
     }
+
+    protected function handleUserWasAuthenticated(Request $request, $throttles)
+    {
+        if ($throttles) {
+            $this->clearLoginAttempts($request);
+        }
+
+        if (method_exists($this, 'authenticated')) {
+            return $this->authenticated($request, Auth::guard($this->getGuard())->user());
+        }
+
+        if($request->event_id) {
+            $stand = Stand::find($request->stand_id);
+            $stand->reserve();
+            return redirect()->intended('/event/' . $request->event_id);
+        }
+        return redirect()->intended($this->redirectPath());
+    }
 }
