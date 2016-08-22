@@ -7,9 +7,11 @@ use App\Event;
 use App\Stand;
 
 use Validator;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -79,5 +81,33 @@ class AuthController extends Controller
     public function reserve(Event $event, Stand $stand)
     {
         return view('auth.reserve', compact(['event','stand']));
+    }
+
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        //Clean this
+        $ext = str_replace('image/','',substr($request->logo, 5, strpos($request->logo, ';')-5));
+        $img = $request->logo; // Your data 'data:image/png;base64,AAAFBfj42Pj4';
+        $img = str_replace("data:image/{$ext};base64,", '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $name = time() . rand() . '-logo.' . $ext;
+        file_put_contents("images/logo/$name", $data);
+
+        Auth::guard($this->getGuard())->login($this->create($request->all(), $name));
+
+        if(!empty($request->stand_id))  {
+            $stand = Stand::find($request->stand_id);
+            $stand->reserve();
+        }
+        return Auth::user()->id;
     }
 }
