@@ -11,6 +11,8 @@
                         {{ csrf_field() }}
                         @include('form/register')
                     </form>
+
+                    @include('modal/dropjs')
                 </div>
             </div>
         </div>

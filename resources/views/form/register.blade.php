@@ -2,7 +2,7 @@
     <label for="name" class="col-md-4 control-label">Company Name</label>
 
     <div class="col-md-6">
-        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+        <input ng-model="name" id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
 
         @if ($errors->has('name'))
             <span class="help-block">
@@ -16,7 +16,7 @@
     <label for="logo" class="col-md-4 control-label">Company Logo</label>
 
     <div class="col-md-6">
-        <input id="logo" type="file" name="logo" value="{{ old('logo') }}" />
+        <input type="file" name="logo"  fileread="logo" />
 
         @if ($errors->has('logo'))
             <span class="help-block">
@@ -30,7 +30,7 @@
     <label for="phone" class="col-md-4 control-label">Contact</label>
 
     <div class="col-md-6">
-        <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+        <input ng-model="phone" id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}">
 
         @if ($errors->has('phone'))
             <span class="help-block">
@@ -44,7 +44,7 @@
     <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
     <div class="col-md-6">
-        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+        <input ng-model="email" id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
 
         @if ($errors->has('email'))
             <span class="help-block">
@@ -58,7 +58,7 @@
     <label for="password" class="col-md-4 control-label">Password</label>
 
     <div class="col-md-6">
-        <input id="password" type="password" class="form-control" name="password">
+        <input ng-model="password" id="password" type="password" class="form-control" name="password">
 
         @if ($errors->has('password'))
             <span class="help-block">
@@ -72,7 +72,7 @@
     <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
     <div class="col-md-6">
-        <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+        <input  ng-model="password_confirmation" id="password-confirm" type="password" class="form-control" name="password_confirmation">
 
         @if ($errors->has('password_confirmation'))
             <span class="help-block">
@@ -84,7 +84,7 @@
 
 <div class="form-group">
     <div class="col-md-6 col-md-offset-4">
-        <button type="submit" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" ng-click="registerUser()">
             <i class="fa fa-btn fa-user"></i> Register
         </button>
     </div>

@@ -47,7 +47,8 @@ class EventsController extends Controller
     	$event->countdown = $event->eventend - time();
     	//Group the stands
     	$stands = array();
-    	foreach($event->stands()->with('user')->get() as $stand) {
+    	foreach($event->stands()->with('user.documents')->get() as $stand) {
+    		
     		$stands[$stand['type']][] = $stand;
     	}
     

@@ -70,10 +70,12 @@
                 <div class="panel-body">
                     <form enctype="multipart/form-data" class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="stand_id" value="{{$stand->id}}" />
-
+                        <input ng-init="stand_id={{$stand->id}}"  ng-model="stand_id" type="hidden" name="stand_id" value="{{$stand->id}}" />
+                        <input ng-init="event_id={{$stand->event_id}}"  ng-model="event_id" type="hidden" name="event_id" value="{{$stand->event_id}}" />
                         @include('form/register')
                     </form>
+
+                    @include('modal/dropjs')
                 </div>
             </div>
         </div>

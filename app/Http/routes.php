@@ -19,5 +19,7 @@ Route::post('event/sendreport', 'EventsController@sendreport');
 Route::post('stand/addStandVisit', 'StandsController@addStandVisit');
 Route::post('stand/addDocumentDownload', 'StandsController@addDocumentDownload');
 
+Route::post('files', 'CompanyDocumentController@addDocument');
+
 
 Route::auth();
