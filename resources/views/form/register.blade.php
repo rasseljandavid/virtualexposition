@@ -79,8 +79,13 @@
                 <strong>{{ $errors->first('password_confirmation') }}</strong>
             </span>
         @endif
+        <span class="help-block help-block-error" id="help-block-error">
+           
+        </span>
     </div>
 </div>
+
+
 
 <div class="form-group">
     <div class="col-md-6 col-md-offset-4">

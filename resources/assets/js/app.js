@@ -48,7 +48,13 @@
     		$http.post('/register', data).success(function(user_id) {
 			    console.log(user_id); //data = 1 (server works);
 			    angular.element('#dropJS').modal();
-			});
+			}).error(function(data, status, headers, config) {
+                var array = $.map(data, function(value, index) {
+                    return [value];
+                });
+                 angular.element('#help-block-error').text(array[0][0]);
+
+            });
     	}
 
     	$scope.doneUploading = function() {
