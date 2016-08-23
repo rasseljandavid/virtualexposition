@@ -84,13 +84,26 @@ class StandsController extends Controller
             $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["y"] = $stand['posy'];
             $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["clothing"] = "clothing";
                 $i[$stand['type']]++;
+
             
         } else {
+
+            $download = "";
+            if(count($stand->user->documents) > 0) {
+                 $download = "<ul>";
+                foreach($stand->user->documents as $document) {
+                      $download .= "<li><a download ng-click='addDocumentDownload($stand->id)' href='/documents/$document->path'>$document->path</a></li>";
+                }
+                $download .= "<ul>";
+            }
             
             $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["id"] = strtolower( str_replace(" ", "_",$stand['title'] . "_" . $stand['type'] . "_" . $i[$stand['type']]  ));
             $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["title"] = $stand->user->name;
-            $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["about"] = $stand->user->email;
-            $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["description"] = $stand->user->phone;
+            $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["about"] = $stand->user->email . ', ' . $stand->user->phone;
+            if($download) {
+                $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["description"] = $download;
+            }
+            
             if(empty($stand->user->logo)) {
                 $stand->user->logo = "nologo.jpg";
             } 
