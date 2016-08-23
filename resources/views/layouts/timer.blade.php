@@ -6,14 +6,14 @@
 				<strong class="ng-binding">
 					<%days%>
 				</strong> 
-				<span class="small"> day<%dayS%> </span> 
+				<span class="small"> day<%daysS%> </span> 
 			</td> 
 
 			<td> 
 				<strong class="ng-binding">
 					<%hours%>
 				</strong> 
-				<span class="small">  hour<%hourS%> </span> 
+				<span class="small">  hour<%hoursS%> </span> 
 			</td> 
 
 			<td> 
