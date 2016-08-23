@@ -15,6 +15,7 @@ elixir(function(mix) {
     mix.sass('app.scss')
        .scripts([
        		'lib/jquery.js',
+                  'lib/geocomplete.js',
        		'lib/bootstrap.js',
        		'lib/angular.js',
        		'lib/moment.js',

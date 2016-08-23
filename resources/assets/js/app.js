@@ -58,6 +58,20 @@
     			$window.location.href = "/";
     		}
     	};
+
+         angular.element("#location").geocomplete({
+          map: "#map-canvas-0",
+          details: "form ",
+          detailsAttribute: "data-geo",
+          markerOptions: {
+            draggable: true
+          }
+        });
+        
+          angular.element("#location").bind("geocode:dragged", function(event, latLng){
+          angular.element("input[name=latitude]").val(latLng.lat());
+          angular.element("input[name=longtitude]").val(latLng.lng());
+        });
 		
 	});
 

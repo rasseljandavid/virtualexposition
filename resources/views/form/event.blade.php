@@ -85,7 +85,7 @@
     <label for="location" class="col-md-4 control-label">Location</label>
 
     <div class="col-md-6">
-        <input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}">
+        <input id="location" data-geo="formatted_address" value="" type="text" class="form-control" name="location" value="{{ old('location') }}">
 
         @if ($errors->has('location'))
             <span class="help-block">
@@ -94,32 +94,11 @@
         @endif
     </div>
 </div>
-
-<div class="form-group{{ $errors->has('latitude') ? ' has-error' : '' }}">
-    <label for="latitude" class="col-md-4 control-label">Latitude</label>
-
-    <div class="col-md-6">
-        <input id="latitude" type="text" class="form-control" name="latitude" value="{{ old('latitude') }}">
-
-        @if ($errors->has('latitude'))
-            <span class="help-block">
-                <strong>{{ $errors->first('latitude') }}</strong>
-            </span>
-        @endif
-    </div>
+  <div class="col-md-6 col-md-offset-4">
+                <div style="height: 200px; width: 100%;" id="map-canvas-0"></div>
 </div>
 
-<div class="form-group{{ $errors->has('longtitude') ? ' has-error' : '' }}">
-    <label for="longtitude" class="col-md-4 control-label">Longtitude</label>
+        <input id="latitude" data-geo="lat" type="hidden" name="latitude" />
+        <input id="longtitude" data-geo="lng" type="hidden" name="longtitude" />
 
-    <div class="col-md-6">
-        <input id="longtitude" type="text" class="form-control" name="longtitude" value="{{ old('longtitude') }}">
-
-        @if ($errors->has('longtitude'))
-            <span class="help-block">
-                <strong>{{ $errors->first('longtitude') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
-
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3.exp&region=GB&language=en-gb&key=AIzaSyAtqWsq5Ai3GYv6dSa6311tZiYKlbYT4mw&signed_in=false&libraries=places"></script>
