@@ -54,7 +54,16 @@
                 });
                  angular.element('#help-block-error').text(array[0][0]);
 
+                
             });
+
+            angular.element('#dropJS').on('hide.bs.modal', function (e) {
+                    if($scope.event_id) {
+                        $window.location.href = "/event/" + $scope.event_id;
+                    } else {
+                        $window.location.href = "/";
+                    }
+                })
     	}
 
     	$scope.doneUploading = function() {
