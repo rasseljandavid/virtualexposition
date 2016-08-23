@@ -94,13 +94,16 @@ class AuthController extends Controller
         }
 
         //Clean this
-        $ext = str_replace('image/','',substr($request->logo, 5, strpos($request->logo, ';')-5));
-        $img = $request->logo; // Your data 'data:image/png;base64,AAAFBfj42Pj4';
-        $img = str_replace("data:image/{$ext};base64,", '', $img);
-        $img = str_replace(' ', '+', $img);
-        $data = base64_decode($img);
-        $name = time() . rand() . '-logo.' . $ext;
-        file_put_contents("images/logo/$name", $data);
+        $name = '';
+        if($request->logo) {
+            $ext = str_replace('image/','',substr($request->logo, 5, strpos($request->logo, ';')-5));
+            $img = $request->logo; // Your data 'data:image/png;base64,AAAFBfj42Pj4';
+            $img = str_replace("data:image/{$ext};base64,", '', $img);
+            $img = str_replace(' ', '+', $img);
+            $data = base64_decode($img);
+            $name = time() . rand() . '-logo.' . $ext;
+            file_put_contents("images/logo/$name", $data);
+        }
 
         Auth::guard($this->getGuard())->login($this->create($request->all(), $name));
 

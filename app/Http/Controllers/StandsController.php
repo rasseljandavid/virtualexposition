@@ -91,6 +91,9 @@ class StandsController extends Controller
             $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["title"] = $stand->user->name;
             $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["about"] = $stand->user->email;
             $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["description"] = $stand->user->phone;
+            if(empty($stand->user->logo)) {
+                $stand->user->logo = "nologo.jpg";
+            } 
             $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["thumbnail"] = "/images/logo/" . $stand->user->logo;
             $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["x"] = $stand['posx'];
             $arr['levels'][$keys[$stand['type']]]["locations"][$i[$stand['type']]]["y"] = $stand['posy'];
