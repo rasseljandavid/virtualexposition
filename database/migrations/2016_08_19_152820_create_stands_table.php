@@ -16,6 +16,8 @@ class CreateStandsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('type');
+            $table->string('posx');
+            $table->string('posy');
             $table->double('price', 15, 4);
             $table->integer('event_id')->unsigned();
             $table->integer('user_id')->unsigned();

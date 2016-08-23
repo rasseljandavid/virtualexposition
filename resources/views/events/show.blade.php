@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+	<input type="hidden" value="{{$event->id}}" id="event_id" />
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
         	<div class="row">
@@ -21,91 +22,9 @@
         	<hr />
 
         	<div class="exposition-hall">
-        		<div class="row large">
-        			@foreach ($stands['large'] as $stand)
-        				<div class="col-md-4">
-        				@unless ($stand->user_id)
-        					<h2 class="price shade-blue">
-			        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-			        				{{number_format($stand->price, 2)}}
-			        			</a>
-		        			</h2>
-		        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-		        				<img src="/images/large_stand_empty.png" / >
-		        			</a>
-		        			@include('modal/stand-free')
-			        	@else 
-			        		<h2 class="company-name no-top-margin">
-			        			<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-			        				<img class="logo" src="/images/logo/{{$stand->user->logo ?: "default.png"}}">
-			        			</a>
-			        		</h2>
-			        		<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-		        				<img src="/images/large_stand.png" / >
-		        			</a>
-		        			@include('modal/stand-company')
-			        	@endif
-			        	</div>
-	        		@endforeach
-        		</div>
-
-        		<div class="row medium">
-        			@foreach ($stands['medium'] as $stand)
-	        		<div class="col-md-3">
-	        			@unless ($stand->user_id)
-		        			<h2 class="price shade-blue">
-		        				<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-			        				{{number_format($stand->price,2)}}
-			        			</a>
-			        		</h2>
-		        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-		        				<img src="/images/medium_stand_empty.png" / >
-		        			</a>
-		        			@include('modal/stand-free')
-			        	@else 
-			        		<h2 class="company-name no-top-margin">
-			        			<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-			        				<img class="logo" src="/images/logo/{{$stand->user->logo ?: "default.png"}}">
-			        			</a>
-			        		</h2>
-			        		<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-		        				<img src="/images/medium_stand.png" / >
-		        			</a>
-		        			@include('modal/stand-company')
-			        	@endif
-	        		</div>
-	        		@endforeach
-        		</div>
-
-        		<div class="row small">
-        			@foreach ($stands['small'] as $stand)
-	        		<div class="col-md-2">
-	        			@unless ($stand->user_id)
-		        			<h2 class="price shade-blue">
-		        				<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-		        					{{number_format($stand->price,2)}}
-		        				</a>
-		        			</h2>
-
-		        			<a href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-		        				<img src="/images/small_stand_empty.png" / >
-		        			</a>
-
-		        			@include('modal/stand-free')
-			        	@else 
-			        		<h2 class="company-name no-top-margin">
-			        			<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-			        				<img class="logo" src="/images/logo/{{$stand->user->logo ?: "default.png"}}">
-			        			</a>
-			        		</h2>
-			        		<a ng-click="addStandVisit({{ $stand->id }})" href="#"  data-toggle="modal" data-target="#modal-{{ $stand->id }}">
-		        				<img src="/images/small_stand.png" / >
-		        			</a>
-
-		        			@include('modal/stand-company')
-			        	@endif
-	        		</div>
-	        		@endforeach
+        		
+        		<div col-md-12>
+        			<div id="mapplic"></div>
         		</div>
         	</div>
         	<hr />

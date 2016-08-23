@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-    <form class="form-horizontal" role="form" method="POST" action="{{ url('event') }}">
+    <form class="form-horizontal" role="form" method="POST" action="{{ url('event/save') }}">
 	    <div class="row">
 	        <div class="col-md-6">
 	            <h2 class="shade-blue">Event Details</h2>
